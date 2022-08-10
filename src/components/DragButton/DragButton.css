@@ -3,14 +3,19 @@
     border-radius: 12px;
     border: none;
     box-shadow: none;
-    cursor: pointer;
+    cursor: grab;
     font-size: large;
     font-weight: bold;
     margin-right: 24px;
     padding: 8px 16px;
     text-transform: capitalize;
+    transition: all ease-in 0.2s;
 }
 
 .drag__button:last-child {
     margin-right: 0;
+}
+
+.drag__button:hover {
+    box-shadow: 5px 5px 5px #80808070;
 }
