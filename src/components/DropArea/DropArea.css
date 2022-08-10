@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.drop__element--succeed {
+.drop__element--completed {
   opacity: 0.7;
 }
 

@@ -9,9 +9,9 @@ export const DropArea = ({
   image,
   handleDrop,
   handleDragOver,
-  succeed,
+  completed,
 }) => (
-  <div className={`drop__element drop__element${succeed ? "--succeed" : ""}`}>
+  <div className={`drop__element drop__element${completed ? "--completed" : ""}`}>
     <img
       id="drop-area"
       className="drop__image"
@@ -20,7 +20,7 @@ export const DropArea = ({
       src={image}
       alt="Display the word match."
     />
-    {succeed && (
+    {completed && (
       <img className="drop__feedback" src={check} alt="Word found!" />
     )}
   </div>

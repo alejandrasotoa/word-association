@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
 
+import {
+  STATUS_COMPLETED,
+  STATUS_ENDED,
+  STATUS_STARTED,
+} from "../../constants";
+
 import { DragButton } from "../DragButton/DragButton";
 import { DropArea } from "../DropArea/DropArea";
 
@@ -15,6 +21,7 @@ const DragAndDrop = ({ playableItems }) => {
 
   const handleDragStart = (e, name) => {
     e.dataTransfer.setData("nameDrag", name);
+    setResults((prevState) => ({ ...prevState, [name]: STATUS_STARTED }));
   };
 
   const handleDrop = (e, target) => {
@@ -22,25 +29,34 @@ const DragAndDrop = ({ playableItems }) => {
     msg.text = target;
     window.speechSynthesis.speak(msg);
     if (nameDragged === target) {
-      setResults((prevState) => ({ ...prevState, [target]: "success" }));
+      setResults((prevState) => ({ ...prevState, [target]: STATUS_COMPLETED }));
+    } else {
+      setResults((prevState) => ({ ...prevState, [nameDragged]: STATUS_ENDED }));
     }
   };
 
-  const handleDragOver = (e, target) => {
+  const handleDragOver = (e) => {
     e.preventDefault();
   };
 
   return (
     <div className="App">
       <div className="drag__container">
-        {playableItems.map(({ id, name, color }) => (
-          <DragButton
-            key={id + ""}
-            handleDragStart={handleDragStart}
-            name={name}
-            color={color}
-          />
-        ))}
+        {playableItems.map(({ id, name, color }) => {
+          const isCompleted =
+            results[name] && results[name] === STATUS_COMPLETED;
+  
+          if (isCompleted) return null;
+          return (
+            <DragButton
+              key={id + ""}
+              handleDragStart={handleDragStart}
+              name={name}
+              color={color}
+              started={results[name] && results[name] === STATUS_STARTED}
+            />
+          );
+        })}
       </div>
       <div className="drop__container">
         {playableItemsShuffled.map(({ id, name, image }) => (
@@ -48,7 +64,7 @@ const DragAndDrop = ({ playableItems }) => {
             key={id + ""}
             name={name}
             image={image}
-            succeed={!!results[name]}
+            completed={results[name] && results[name] === STATUS_COMPLETED}
             handleDrop={handleDrop}
             handleDragOver={handleDragOver}
           />
