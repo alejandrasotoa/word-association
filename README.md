@@ -36,7 +36,9 @@ npm start
 
 ### Current Implementation
 
-The current implementation covers a basic usecase. Still, visual components are built as dummies separated from the business logic to allow the scalability, reusability and also reduce the maintainance time. I decided to use React and pure CSS to keep the simplicity of all the elements, and the state of the application -which in this case is minimal- is handled by the view itself.
+The current implementation covers a basic use case. However, the isual components are built as dummies separated from the business logic to allow the scalability, reusability and also reduce the maintainance time.
+
+I decided to use React, HTML APIs and pure CSS to keep the simplicity of all the elements, especially since I've used the HTML Drag&Drop API before. The state of the application -which in this case is minimal- is handled by the view itself.
 
 ### Accesibility
 
@@ -47,4 +49,3 @@ The current application barely covers all accessibility needs. This solution inc
 Some of the possible improvements
 
 - Handling interaction using the keyboard. This [article](https://medium.com/salesforce-ux/4-major-patterns-for-accessible-drag-and-drop-1d43f64ebf09) provides an interesting walkthrough on different approaches to implement accessible drag-and-drop functionality.
-
