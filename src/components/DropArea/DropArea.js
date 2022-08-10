@@ -1,5 +1,7 @@
 import React from "react";
 
+import check from "../../assets/check.png";
+
 import "./DropArea.css";
 
 export const DropArea = ({
@@ -9,7 +11,7 @@ export const DropArea = ({
   handleDragOver,
   succeed,
 }) => (
-  <div>
+  <div className={`drop__element drop__element${succeed ? "--succeed" : ""}`}>
     <img
       id="drop-area"
       className="drop__image"
@@ -18,6 +20,8 @@ export const DropArea = ({
       src={image}
       alt="Display the word match."
     />
-    {succeed && <div>Great!</div>}
+    {succeed && (
+      <img className="drop__feedback" src={check} alt="Word found!" />
+    )}
   </div>
 );

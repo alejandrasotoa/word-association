@@ -1,5 +1,24 @@
+.drop__element {
+  width: 20vw;
+  height: 20vw;
+  max-width: 300px;
+  text-align: center;
+  margin-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop__element--succeed {
+  opacity: 0.7;
+}
+
 .drop__image {
-    width: 20vw;
-    max-width: 300px;
-    margin-left: 5vw;
-  }
+  height: 70%;
+}
+
+.drop__feedback {
+  flex-grow: 1;
+  height: 15%;
+  justify-self: flex-end;
+}

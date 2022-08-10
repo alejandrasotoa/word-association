@@ -1,9 +1,10 @@
 import "./App.css";
 
+import DragAndDrop from "./components/DragAndDrop/DragAndDrop";
+
 import broccoli from "./assets/broccoli.png";
 import lettuce from "./assets/lettuce.png";
 import potato from "./assets/potato.png";
-import DragAndDrop from "./components/DragAndDrop/DragAndDrop";
 
 const playableItems = [
   {

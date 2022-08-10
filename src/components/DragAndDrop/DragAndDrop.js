@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { DragButton } from "../DragButton/DragButton";
 import { DropArea } from "../DropArea/DropArea";
@@ -8,8 +8,8 @@ const DragAndDrop = ({ playableItems }) => {
   const msg = new SpeechSynthesisUtterance();
 
   // memoizing the elements to avoid unnecesary rerenders.
-  const getPlayableItems = useCallback(
-    () => playableItems.sort(() => Math.random() - 0.5),
+  const playableItemsShuffled = useMemo(
+    () => [...playableItems].sort(() => Math.random() - 0.5),
     [playableItems]
   );
 
@@ -18,11 +18,10 @@ const DragAndDrop = ({ playableItems }) => {
   };
 
   const handleDrop = (e, target) => {
-    const { id } = e.target;
+    const nameDragged = e.dataTransfer.getData("nameDrag");
     msg.text = target;
     window.speechSynthesis.speak(msg);
-    console.log({id, target, e})
-    if (id === target) {
+    if (nameDragged === target) {
       setResults((prevState) => ({ ...prevState, [target]: "success" }));
     }
   };
@@ -34,7 +33,7 @@ const DragAndDrop = ({ playableItems }) => {
   return (
     <div className="App">
       <div className="drag__container">
-        {getPlayableItems().map(({ id, name, color }) => (
+        {playableItems.map(({ id, name, color }) => (
           <DragButton
             key={id + ""}
             handleDragStart={handleDragStart}
@@ -44,12 +43,12 @@ const DragAndDrop = ({ playableItems }) => {
         ))}
       </div>
       <div className="drop__container">
-        {getPlayableItems().map(({ id, name, image }) => (
+        {playableItemsShuffled.map(({ id, name, image }) => (
           <DropArea
             key={id + ""}
             name={name}
             image={image}
-            succeed={!!results[id]}
+            succeed={!!results[name]}
             handleDrop={handleDrop}
             handleDragOver={handleDragOver}
           />
