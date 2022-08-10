@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+.drag__container {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drag__text {
+  cursor: pointer;
+}
+
+.drop__container {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drop__image {
+  width: 20vw;
+}
