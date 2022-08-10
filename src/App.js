@@ -1,55 +1,37 @@
-import { useState } from "react";
 import "./App.css";
 
+import broccoli from "./assets/broccoli.png";
+import lettuce from "./assets/lettuce.png";
 import potato from "./assets/potato.png";
+import DragAndDrop from "./components/DragAndDrop/DragAndDrop";
 
-function App() {
-  const msg = new SpeechSynthesisUtterance();
-  msg.text = "Potato";
+const playableItems = [
+  {
+    id: "1",
+    name: "broccoli",
+    image: broccoli,
+    color: "#f9c642",
+  },
+  {
+    id: "2",
+    name: "lettuce",
+    image: lettuce,
+    color: "#4aa564",
+  },
+  {
+    id: "3",
+    name: "potato",
+    image: potato,
+    color: "#02bfe7",
+  },
+];
 
-  const [items, setItems] = useState([]);
-  const handleDragStart = (e, id) => {
-    e.dataTransfer.setData("id", id);
-  };
-
-  const handleDrop = (e, target) => {
-    const { id } = e.target;
-    window.speechSynthesis.speak(msg);
-    if (target === "potato") {
-      setItems((prevState) => [...prevState, target]);
-    }
-  };
-
-  const handleDragOver = (e, target) => {
-    e.preventDefault();
-  };
-
+const App = () => {
   return (
     <div className="App">
-      <div className="drag__container">
-        <div
-          className="drag__text"
-          onDragStart={handleDragStart}
-          id="potato"
-          draggable="true"
-        >
-          Potato
-        </div>
-      </div>
-      <div className="drop__container">
-        <img
-          id="drop-potato"
-          className="drop__image"
-          onDragOver={handleDragOver}
-          onDrop={(e) => handleDrop(e, "potato")}
-          src={potato}
-        />
-        {items.map((item) => (
-          <div key={item}>{item}</div>
-        ))}
-      </div>
+      <DragAndDrop playableItems={playableItems} />
     </div>
   );
-}
+};
 
 export default App;
