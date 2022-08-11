@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import PropTypes from "prop-types";
 
 import {
   STATUS_COMPLETED,
@@ -31,7 +32,10 @@ const DragAndDrop = ({ playableItems }) => {
     if (nameDragged === target) {
       setResults((prevState) => ({ ...prevState, [target]: STATUS_COMPLETED }));
     } else {
-      setResults((prevState) => ({ ...prevState, [nameDragged]: STATUS_ENDED }));
+      setResults((prevState) => ({
+        ...prevState,
+        [nameDragged]: STATUS_ENDED,
+      }));
     }
   };
 
@@ -45,12 +49,12 @@ const DragAndDrop = ({ playableItems }) => {
         {playableItems.map(({ id, name, color }) => {
           const isCompleted =
             results[name] && results[name] === STATUS_COMPLETED;
-  
+
           if (isCompleted) return null;
           return (
             <DragButton
               key={id + ""}
-              handleDragStart={handleDragStart}
+              handleDragStart={(e) => handleDragStart(e, name)}
               name={name}
               color={color}
               started={results[name] && results[name] === STATUS_STARTED}
@@ -65,13 +69,24 @@ const DragAndDrop = ({ playableItems }) => {
             name={name}
             image={image}
             completed={results[name] && results[name] === STATUS_COMPLETED}
-            handleDrop={handleDrop}
+            handleDrop={(e) => handleDrop(e, name)}
             handleDragOver={handleDragOver}
           />
         ))}
       </div>
     </div>
   );
+};
+
+DragAndDrop.propTypes = {
+  playableItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+    }).isRequired
+  ),
 };
 
 export default DragAndDrop;

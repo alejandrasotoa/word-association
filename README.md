@@ -46,6 +46,6 @@ The current application barely covers all accessibility needs. This solution inc
 
 - Tags are identified and roles are included using semantic HTML.
 
-Some of the possible improvements
+Possible improvements:
 
 - Handling interaction using the keyboard. This [article](https://medium.com/salesforce-ux/4-major-patterns-for-accessible-drag-and-drop-1d43f64ebf09) provides an interesting walkthrough on different approaches to implement accessible drag-and-drop functionality.
