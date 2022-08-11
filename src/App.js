@@ -11,19 +11,19 @@ const playableItems = [
     id: "1",
     name: "broccoli",
     image: broccoli,
-    color: "#f9c642",
+    buttonBackgroundColor: "#f9c642",
   },
   {
     id: "2",
     name: "lettuce",
     image: lettuce,
-    color: "#4aa564",
+    buttonBackgroundColor: "#4aa564",
   },
   {
     id: "3",
     name: "potato",
     image: potato,
-    color: "#02bfe7",
+    buttonBackgroundColor: "#02bfe7",
   },
 ];
 

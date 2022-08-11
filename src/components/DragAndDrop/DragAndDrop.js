@@ -46,7 +46,7 @@ const DragAndDrop = ({ playableItems }) => {
   return (
     <div className="App">
       <div className="drag__container">
-        {playableItems.map(({ id, name, color }) => {
+        {playableItems.map(({ id, name, buttonBackgroundColor }) => {
           const isCompleted =
             results[name] && results[name] === STATUS_COMPLETED;
 
@@ -56,7 +56,7 @@ const DragAndDrop = ({ playableItems }) => {
               key={id + ""}
               handleDragStart={(e) => handleDragStart(e, name)}
               name={name}
-              color={color}
+              backgroundColor={buttonBackgroundColor}
               started={results[name] && results[name] === STATUS_STARTED}
             />
           );
@@ -84,7 +84,7 @@ DragAndDrop.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired,
+      buttonBackgroundColor: PropTypes.string.isRequired,
     }).isRequired
   ),
 };

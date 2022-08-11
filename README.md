@@ -36,15 +36,29 @@ npm start
 
 ### Current Implementation
 
-The current implementation covers a basic use case. However, the isual components are built as dummies separated from the business logic to allow the scalability, reusability and also reduce the maintainance time.
+The current implementation covers a basic use case. However, the isual components are built as dummies separated from the business logic to allow the scalability, reusability and also reduce the maintainance time. To extend the use, each component can be used separately. In addition, reproducible figures and images can be easily replaced or added if necessary by placing more items in the `playableItems` object, as follows:
+
+```
+const playableItems = [
+  ...,
+  {
+    id: "5",
+    name: "tomato",
+    image: tomato, // add another image to the project.
+    buttonBackgroundColor: "#02bfe7", // [choose a color](http://web-accessibility.carnegiemuseums.org/design/color/) with sufficient contrast with the text color wich is #212121.
+  },
+];
+```
 
 I decided to use React, HTML APIs and pure CSS to keep the simplicity of all the elements, especially since I've used the HTML Drag&Drop API before. The state of the application -which in this case is minimal- is handled by the view itself.
 
+As for typing, the current implementation uses React Prop-types, which is by far the best approach due to its limitations. Basically, the biggest problem with prop-types is that type checking is done after the application is built and warnings/errors are displayed in the DevTools but it can provide some control over the props. In a production application, I would definitely prefer Typescript.
 ### Accesibility
 
 The current application barely covers all accessibility needs. This solution includes:
 
 - Tags are identified and roles are included using semantic HTML.
+- The colors chosen are contrasting to be legible for a person with low vision.
 
 Possible improvements:
 
